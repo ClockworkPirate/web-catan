@@ -1,4 +1,6 @@
 var rolls = [5, 2, 6, 3, 8, 10, 9, 12, 11, 4, 8, 10, 9, 4, 5, 6, 3, 11];
+var doge = new Image();
+doge.src = "images/doge.jpg";
 
 var catanBoard = function (width) {
 	var board = [];
@@ -54,21 +56,26 @@ var makeNiceContext = function (ctx) {
 	ctx.moveHexCenter = function (sideLength, dx, dy) {
 		this.moveR(SQRT_3 * sideLength * (dx - (dy % 2 == 0 ? 0 : 0.5)), 1.5 * sideLength * dy);
 	}
+	
+	ctx.imageR = function (image, dx, dy, width, height) {
+		this.drawImage(image, this.x + dx - width / 2, this.y + dy - height / 2, width, height);
+	}
 
 	ctx.drawCatanBoard = function (sideLength) {
-		ctx.moveHexCenter(sideLength, 2, -3);
+		this.moveHexCenter(sideLength, 2, -3);
 		var rowLengths = [3, 4, 5, 4, 3];
 		var rev = 1;
 		for (var row in rowLengths) {
-			ctx.moveHexCenter(sideLength, rev-rowLengths[row], 1);
+			this.moveHexCenter(sideLength, rev-rowLengths[row], 1);
 			for (var m = 0; m < rowLengths[row]; m++) {
-				ctx.drawRegHex(sideLength);
-				ctx.moveHexCenter(sideLength, 1, 0);
+				this.drawRegHex(sideLength);
+				this.imageR(doge, 0, 0, SQRT_3 * sideLength, 2 * sideLength);
+				this.moveHexCenter(sideLength, 1, 0);
 			}
 			if (row == 2) {rev--;}
 		}
-		ctx.stroke();
-		ctx.moveHexCenter(sideLength, -2.5, -2);
+		this.stroke();
+		this.moveHexCenter(sideLength, -2.5, -2);
 	}
 
 	return ctx;
@@ -79,9 +86,6 @@ var main = function () {
 	var sideLength = 50;
 	ctx.move(400, 400);
 	ctx.drawCatanBoard(sideLength);
-	var doge = new Image();
-	doge.src = "./images/doge.jpg"
-	ctx.drawImage(doge, 100, 100);
 }
 
-$(document).ready(main);
+$(window).load(main);
