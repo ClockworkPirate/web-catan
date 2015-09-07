@@ -56,21 +56,19 @@ var makeNiceContext = function (ctx) {
 	}
 
 	ctx.drawCatanBoard = function (sideLength) {
-		ctx.beginPath();
-		ctx.drawRegHex(sideLength);
+		ctx.moveHexCenter(sideLength, 2, -3);
+		var rowLengths = [3, 4, 5, 4, 3];
+		var rev = 1;
+		for (var row in rowLengths) {
+			ctx.moveHexCenter(sideLength, rev-rowLengths[row], 1);
+			for (var m = 0; m < rowLengths[row]; m++) {
+				ctx.drawRegHex(sideLength);
+				ctx.moveHexCenter(sideLength, 1, 0);
+			}
+			if (row == 2) {rev--;}
+		}
 		ctx.stroke();
-		// ctx.moveHexCenter(sideLength, -0.5, -3);
-		// ctx.beginPath();
-		// var lengths = [3, 4, 5, 4, 3]
-		// for (var length in lengths) {
-		// 	ctx.moveHexCenter(sideLength, 1-length, 1);
-		// 	for (var m = 0; m < length; m++) {
-		// 		ctx.drawRegHex(sideLength);
-		// 		ctx.moveHexCenter(sideLength, 1, 0);
-		// 	}
-		// }
-		// ctx.stroke();
-		// ctx.moveHexCenter(sideLength, -2.5, -2);
+		ctx.moveHexCenter(sideLength, -2.5, -2);
 	}
 
 	return ctx;
@@ -81,6 +79,9 @@ var main = function () {
 	var sideLength = 50;
 	ctx.move(400, 400);
 	ctx.drawCatanBoard(sideLength);
+	var doge = new Image();
+	doge.src = "./images/doge.jpg"
+	ctx.drawImage(doge, 100, 100);
 }
 
 $(document).ready(main);
