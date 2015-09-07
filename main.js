@@ -16,6 +16,7 @@ for (var typ in terrainTypes) {
 		terrain.push(eval(typ));
 	}
 }
+terrain = shuffleArray(terrain);
 
 var catanBoard = function (width) {
 	var board = [];
