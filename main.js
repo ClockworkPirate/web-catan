@@ -21,19 +21,19 @@ var SQRT_3 = Math.sqrt(3);
 var makeNiceContext = function (ctx) {
 	ctx.x = 0;
 	ctx.y = 0;
-	
+
 	ctx.move = function (x, y) {
 		this.x = x;
 		this.y = y;
 		return this.moveTo(x, y);
 	}
-	
+
 	ctx.moveR = function (dx, dy) {
 		this.x += dx;
 		this.y += dy;
 		return this.moveTo(this.x, this.y);
 	}
-	
+
 	ctx.lineR = function (dx, dy) {
 		this.x += dx;
 		this.y += dy;
@@ -50,82 +50,36 @@ var makeNiceContext = function (ctx) {
 		this.lineR(SQRT_3 * sideLength / 2, -sideLength / 2);
 		this.moveR(0, sideLength);
 	}
-	
+
 	ctx.moveHexCenter = function (sideLength, dx, dy) {
 		this.moveR(SQRT_3 * sideLength * (dx - (dy % 2 == 0 ? 0 : 0.5)), 1.5 * sideLength * dy);
 	}
-	
+
 	ctx.drawCatanBoard = function (sideLength) {
 		ctx.beginPath();
 		ctx.drawRegHex(sideLength);
-		ctx.moveHexCenter(sideLength, 1, 0);
-		ctx.drawRegHex(sideLength);
-		ctx.moveHexCenter(sideLength, 1, 0);
-		ctx.drawRegHex(sideLength);
-		ctx.moveHexCenter(sideLength, -2, 1);
-		ctx.drawRegHex(sideLength);
-		ctx.moveHexCenter(sideLength, 1, 0);
-		ctx.drawRegHex(sideLength);
-		ctx.moveHexCenter(sideLength, 1, 0);
-		ctx.drawRegHex(sideLength);
-		ctx.moveHexCenter(sideLength, 1, 0);
-		ctx.drawRegHex(sideLength);
-		ctx.moveHexCenter(sideLength, -3, 1);
-		ctx.drawRegHex(sideLength);
-		ctx.moveHexCenter(sideLength, 1, 0);
-		ctx.drawRegHex(sideLength);
-		ctx.moveHexCenter(sideLength, 1, 0);
-		ctx.drawRegHex(sideLength);
-		ctx.moveHexCenter(sideLength, 1, 0);
-		ctx.drawRegHex(sideLength);
-		ctx.moveHexCenter(sideLength, 1, 0);
-		ctx.drawRegHex(sideLength);
-		ctx.moveHexCenter(sideLength, -4, 1);
-		ctx.drawRegHex(sideLength);
-		ctx.moveHexCenter(sideLength, 1, 0);
-		ctx.drawRegHex(sideLength);
-		ctx.moveHexCenter(sideLength, 1, 0);
-		ctx.drawRegHex(sideLength);
-		ctx.moveHexCenter(sideLength, 1, 0);
-		ctx.drawRegHex(sideLength);
-		ctx.moveHexCenter(sideLength, 1, 0);
-		ctx.drawRegHex(sideLength);
-		ctx.moveHexCenter(sideLength, 1, 0);
-		ctx.drawRegHex(sideLength);
-		ctx.moveHexCenter(sideLength, -4, 1);
-		ctx.drawRegHex(sideLength);
-		ctx.moveHexCenter(sideLength, 1, 0);
-		ctx.drawRegHex(sideLength);
-		ctx.moveHexCenter(sideLength, 1, 0);
-		ctx.drawRegHex(sideLength);
-		ctx.moveHexCenter(sideLength, 1, 0);
-		ctx.drawRegHex(sideLength);
-		ctx.moveHexCenter(sideLength, 1, 0);
-		ctx.drawRegHex(sideLength);
-		ctx.moveHexCenter(sideLength, -3, 1);
-		ctx.drawRegHex(sideLength);
-		ctx.moveHexCenter(sideLength, 1, 0);
-		ctx.drawRegHex(sideLength);
-		ctx.moveHexCenter(sideLength, 1, 0);
-		ctx.drawRegHex(sideLength);
-		ctx.moveHexCenter(sideLength, 1, 0);
-		ctx.drawRegHex(sideLength);
-		ctx.moveHexCenter(sideLength, -2, 1);
-		ctx.drawRegHex(sideLength);
-		ctx.moveHexCenter(sideLength, 1, 0);
-		ctx.drawRegHex(sideLength);
-		ctx.moveHexCenter(sideLength, 1, 0);
-		ctx.drawRegHex(sideLength);
 		ctx.stroke();
+		// ctx.moveHexCenter(sideLength, -0.5, -3);
+		// ctx.beginPath();
+		// var lengths = [3, 4, 5, 4, 3]
+		// for (var length in lengths) {
+		// 	ctx.moveHexCenter(sideLength, 1-length, 1);
+		// 	for (var m = 0; m < length; m++) {
+		// 		ctx.drawRegHex(sideLength);
+		// 		ctx.moveHexCenter(sideLength, 1, 0);
+		// 	}
+		// }
+		// ctx.stroke();
+		// ctx.moveHexCenter(sideLength, -2.5, -2);
 	}
-	
+
 	return ctx;
 }
 
 var main = function () {
 	var ctx = makeNiceContext($("canvas#board")[0].getContext("2d"));
 	var sideLength = 50;
-	ctx.move(300, 100);
+	ctx.move(400, 400);
 	ctx.drawCatanBoard(sideLength);
 }
 
