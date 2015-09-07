@@ -83,7 +83,7 @@ var makeNiceContext = function (ctx) {
 
 var main = function () {
 	var ctx = makeNiceContext($("canvas#board")[0].getContext("2d"));
-	var sideLength = 50;
+	var sideLength = 80;
 	ctx.move(400, 400);
 	ctx.drawCatanBoard(sideLength);
 }
