@@ -1,6 +1,21 @@
 var rolls = [5, 2, 6, 3, 8, 10, 9, 12, 11, 4, 8, 10, 9, 4, 5, 6, 3, 11];
+
 var doge = new Image();
 doge.src = "images/doge.png";
+
+var pepe = new Image();
+pepe.src = "images/pepe.png";
+
+var interesting = new Image();
+interesting.src = "images/interesting.png";
+
+var terrainTypes = { doge: 9, pepe: 9, interesting: 1 }
+var terrain = [];
+for (var typ in terrainTypes) {
+	for (var i = 0; i < terrainTypes[typ]; i++) {
+		terrain.push(typ);
+	}
+}
 
 var catanBoard = function (width) {
 	var board = [];
