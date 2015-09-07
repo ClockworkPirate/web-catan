@@ -5,7 +5,16 @@ html {
 div#board {
 	width: 800px;
 	margin: 100px auto 100px auto;
+	padding: 10px;
 	background: white;
 	border-radius: 10px;
 	box-shadow: 1px 1px 30px #39b;
+}
+
+div#board div#dice {
+	background: #f99;
+	height: 100px;
+	width: 100px;
+	position: -webkit-sticky;
+	top: 0px;
 }
