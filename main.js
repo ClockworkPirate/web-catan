@@ -13,7 +13,7 @@ var terrainTypes = { doge: 9, pepe: 9, interesting: 1 }
 var terrain = [];
 for (var typ in terrainTypes) {
 	for (var i = 0; i < terrainTypes[typ]; i++) {
-		terrain.push(typ);
+		terrain.push(eval(typ));
 	}
 }
 
@@ -84,7 +84,7 @@ var makeNiceContext = function (ctx) {
 			this.moveHexCenter(sideLength, rev-rowLengths[row], 1);
 			for (var m = 0; m < rowLengths[row]; m++) {
 				this.drawRegHex(sideLength);
-				this.imageR(doge, 0, 0, SQRT_3 * sideLength, 2 * sideLength);
+				this.imageR(terrain.pop(), 0, 0, SQRT_3 * sideLength, 2 * sideLength);
 				this.moveHexCenter(sideLength, 1, 0);
 			}
 			if (row == 2) {rev--;}
