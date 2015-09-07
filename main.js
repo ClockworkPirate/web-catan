@@ -56,7 +56,7 @@ var makeNiceContext = function (ctx) {
 	ctx.moveHexCenter = function (sideLength, dx, dy) {
 		this.moveR(SQRT_3 * sideLength * (dx - (dy % 2 == 0 ? 0 : 0.5)), 1.5 * sideLength * dy);
 	}
-	
+
 	ctx.imageR = function (image, dx, dy, width, height) {
 		this.drawImage(image, this.x + dx - width / 2, this.y + dy - height / 2, width, height);
 	}
